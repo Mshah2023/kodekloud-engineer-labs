@@ -1,17 +1,31 @@
-# Kubernetes Task 1 - Create a Pod Using a YAML Manifest
+# Kubernetes Task 1 – Create a Pod Using a YAML Manifest
+
+This task demonstrates how to create a basic Kubernetes Pod using a YAML manifest and deploy it with `kubectl`.
 
 ## Objective
 
-Create a Kubernetes Pod with the following requirements:
+Create a Kubernetes Pod with the following configuration:
 
-* **Pod Name:** `pod-nginx`
-* **Image:** `nginx:latest`
-* **Label:** `app=nginx_app`
-* **Container Name:** `nginx-container`
+| Property       | Value             |
+| -------------- | ----------------- |
+| Pod Name       | `pod-nginx`       |
+| Container Name | `nginx-container` |
+| Image          | `nginx:latest`    |
+| Label          | `app=nginx_app`   |
 
 ---
 
-## Step 1: Create the YAML Manifest
+## Files
+
+```text
+.
+├── README.md
+└── pod-nginx.yaml
+```
+
+---
+
+## YAML Manifest
 
 Create a file named `pod-nginx.yaml`:
 
@@ -24,15 +38,13 @@ metadata:
     app: nginx_app
 spec:
   containers:
-  - name: nginx-container
-    image: nginx:latest
+    - name: nginx-container
+      image: nginx:latest
 ```
 
 ---
 
-## Step 2: Apply the Manifest
-
-Run the following command to create the Pod:
+## Deploy the Pod
 
 ```bash
 kubectl apply -f pod-nginx.yaml
@@ -46,9 +58,9 @@ pod/pod-nginx created
 
 ---
 
-## Step 3: Verify the Pod
+## Verify the Deployment
 
-List the Pods along with their labels:
+List the Pods and display their labels:
 
 ```bash
 kubectl get pods --show-labels
@@ -61,117 +73,8 @@ NAME        READY   STATUS    RESTARTS   AGE   LABELS
 pod-nginx   1/1     Running   0          10s   app=nginx_app
 ```
 
-To view detailed information about the Pod:
+View detailed information about the Pod:
 
 ```bash
 kubectl describe pod pod-nginx
 ```
-
----
-
-# Understanding the YAML
-
-## `apiVersion`
-
-```yaml
-apiVersion: v1
-```
-
-Specifies the Kubernetes API version used to create the Pod.
-
----
-
-## `kind`
-
-```yaml
-kind: Pod
-```
-
-Defines the type of Kubernetes object being created.
-
----
-
-## `metadata`
-
-```yaml
-metadata:
-  name: pod-nginx
-  labels:
-    app: nginx_app
-```
-
-Contains information about the Pod.
-
-* `name` → The Pod's name.
-* `labels` → Key-value pairs used to identify and organize resources.
-
----
-
-## `spec`
-
-```yaml
-spec:
-```
-
-Describes how the Pod should run.
-
----
-
-## `containers`
-
-```yaml
-containers:
-```
-
-Lists the container(s) that will run inside the Pod.
-
----
-
-## `name`
-
-```yaml
-- name: nginx-container
-```
-
-Sets the container name.
-
----
-
-## `image`
-
-```yaml
-image: nginx:latest
-```
-
-Specifies the container image and tag to use.
-
----
-
-# YAML Structure
-
-Every basic Pod manifest follows this structure:
-
-```yaml
-apiVersion
-kind
-metadata
-  name
-  labels
-spec
-  containers
-    name
-    image
-```
-
----
-
-# Summary
-
-| Requirement    | Value             |
-| -------------- | ----------------- |
-| Pod Name       | `pod-nginx`       |
-| Image          | `nginx:latest`    |
-| Container Name | `nginx-container` |
-| Label          | `app=nginx_app`   |
-
-This completes the task of creating a Kubernetes Pod using a YAML manifest.
