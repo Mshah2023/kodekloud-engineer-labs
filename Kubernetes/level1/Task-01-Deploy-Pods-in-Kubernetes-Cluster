@@ -1,0 +1,241 @@
+# Kubernetes Lab: Create an Nginx Pod
+
+## 📌 Objective
+
+Create a Kubernetes pod with the following specifications:
+
+| Property | Value |
+|----------|-------|
+| Pod Name | `pod-nginx` |
+| Image | `nginx:latest` |
+| Container Name | `nginx-container` |
+| Label | `app=nginx_app` |
+
+> **Note:** The Kubernetes cluster is already configured on the jump host, so `kubectl` can be used directly.
+
+---
+
+# Lab Environment
+
+| Component | Details |
+|-----------|---------|
+| Platform | Kubernetes |
+| Tool | kubectl |
+| Cluster Access | Pre-configured on Jump Host |
+
+---
+
+# Solution
+
+## Step 1: Verify Cluster Connectivity
+
+```bash
+kubectl cluster-info
+```
+
+Expected output:
+
+```text
+Kubernetes control plane is running...
+CoreDNS is running...
+```
+
+---
+
+## Step 2: Create the Pod
+
+```bash
+kubectl run pod-nginx \
+  --image=nginx:latest \
+  --labels=app=nginx_app \
+  --restart=Never \
+  --overrides='{
+    "spec":{
+      "containers":[
+        {
+          "name":"nginx-container",
+          "image":"nginx:latest"
+        }
+      ]
+    }
+  }'
+```
+
+---
+
+## Step 3: Verify the Pod
+
+```bash
+kubectl get pods
+```
+
+Example output:
+
+```text
+NAME         READY   STATUS    RESTARTS   AGE
+pod-nginx    1/1     Running   0          15s
+```
+
+---
+
+## Step 4: Verify Labels
+
+```bash
+kubectl get pod pod-nginx --show-labels
+```
+
+Expected:
+
+```text
+NAME         READY   STATUS    RESTARTS   AGE   LABELS
+pod-nginx    1/1     Running   0          20s   app=nginx_app
+```
+
+---
+
+## Step 5: Verify Container Name
+
+```bash
+kubectl describe pod pod-nginx
+```
+
+Container section:
+
+```text
+Containers:
+  nginx-container:
+    Image: nginx:latest
+```
+
+---
+
+# Alternative YAML Manifest
+
+Create a file named `pod-nginx.yaml`
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-nginx
+  labels:
+    app: nginx_app
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+```
+
+Deploy the pod:
+
+```bash
+kubectl apply -f pod-nginx.yaml
+```
+
+Verify:
+
+```bash
+kubectl get pods
+```
+
+---
+
+# Validation Commands
+
+Check pod:
+
+```bash
+kubectl get pod pod-nginx
+```
+
+Check labels:
+
+```bash
+kubectl get pod pod-nginx --show-labels
+```
+
+Check image:
+
+```bash
+kubectl get pod pod-nginx -o jsonpath='{.spec.containers[0].image}'
+```
+
+Output:
+
+```text
+nginx:latest
+```
+
+Check container name:
+
+```bash
+kubectl get pod pod-nginx -o jsonpath='{.spec.containers[0].name}'
+```
+
+Output:
+
+```text
+nginx-container
+```
+
+---
+
+# Project Structure
+
+```
+kubernetes-create-nginx-pod/
+│
+├── README.md
+└── pod-nginx.yaml
+```
+
+---
+
+# Key Kubernetes Concepts Demonstrated
+
+- Creating Pods
+- Using `kubectl run`
+- Deploying resources with YAML
+- Applying Labels
+- Naming Containers
+- Verifying Kubernetes Resources
+- Using JSONPath Queries
+
+---
+
+# Commands Summary
+
+```bash
+kubectl cluster-info
+
+kubectl run pod-nginx \
+--image=nginx:latest \
+--labels=app=nginx_app \
+--restart=Never \
+--overrides='{"spec":{"containers":[{"name":"nginx-container","image":"nginx:latest"}]}}'
+
+kubectl get pods
+
+kubectl describe pod pod-nginx
+
+kubectl get pod pod-nginx --show-labels
+
+kubectl get pod pod-nginx -o jsonpath='{.spec.containers[0].image}'
+
+kubectl get pod pod-nginx -o jsonpath='{.spec.containers[0].name}'
+```
+
+---
+
+# Result
+
+Successfully created a Kubernetes pod named **`pod-nginx`** using the **`nginx:latest`** image, configured with the label **`app=nginx_app`**, and a container named **`nginx-container`**. The deployment was verified using standard `kubectl` inspection commands.
+
+---
+
+## Author
+
+**Kubernetes Hands-on Lab**
+
+This repository demonstrates basic Kubernetes pod creation and verification using `kubectl`, suitable for beginners learning Kubernetes resource management.
