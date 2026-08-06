@@ -15,15 +15,6 @@ Create a Kubernetes Pod with the following configuration:
 
 ---
 
-## Files
-
-```text
-.
-├── README.md
-└── pod-nginx.yaml
-```
-
----
 
 ## YAML Manifest
 
