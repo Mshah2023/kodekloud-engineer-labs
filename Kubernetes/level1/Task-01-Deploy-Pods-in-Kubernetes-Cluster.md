@@ -18,7 +18,7 @@ Create a Kubernetes Pod named `pod-nginx` using a YAML manifest with the followi
 Create a file named `pod-nginx.yaml`:
 
 ```bash
-![alt text](image.png)
+![alt text](img/image.png)
 ```
 
 ### Manifest Explanation
@@ -39,7 +39,7 @@ Apply the YAML manifest using:
 
 ```bash
 kubectl apply -f pod-nginx.yaml
-![alt text](image-1.png)
+![alt text](img/image-1.png)
 ```
 
 ---
@@ -50,7 +50,7 @@ Check the Pod status:
 
 ```bash
 kubectl get pod pod-nginx --show-lebals
-![alt text](image-2.png) 
+![alt text](img/image-2.png) 
 ```
 
 ---
