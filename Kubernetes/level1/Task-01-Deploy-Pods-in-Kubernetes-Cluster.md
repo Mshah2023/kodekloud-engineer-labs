@@ -1,71 +1,69 @@
-# Kubernetes Task 1 – Create a Pod Using a YAML Manifest
+# Kubernetes Lab: Create an Nginx Pod
 
-This task demonstrates how to create a basic Kubernetes Pod using a YAML manifest and deploy it with `kubectl`.
+## 📌 Objective
 
-## Objective
+Create a Kubernetes Pod named `pod-nginx` using a YAML manifest with the following configuration:
 
-Create a Kubernetes Pod with the following configuration:
-
-| Property       | Value             |
+| Requirement    | Value             |
 | -------------- | ----------------- |
 | Pod Name       | `pod-nginx`       |
 | Container Name | `nginx-container` |
 | Image          | `nginx:latest`    |
-| Label          | `app=nginx_app`   |
+| Label          | `app: nginx_app`  |
 
 ---
 
-
-## YAML Manifest
+## 📝 Step 1: Create the YAML Manifest
 
 Create a file named `pod-nginx.yaml`:
 
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-nginx
-  labels:
-    app: nginx_app
-spec:
-  containers:
-    - name: nginx-container
-      image: nginx:latest
+```bash
+![alt text](image.png)
 ```
+
+### Manifest Explanation
+
+* `apiVersion: v1` — Uses the Kubernetes Core API.
+* `kind: Pod` — Defines the resource as a Pod.
+* `metadata.name` — Sets the Pod name to `pod-nginx`.
+* `metadata.labels` — Adds the label `app: nginx_app`.
+* `spec.containers` — Defines the container running inside the Pod.
+* `name` — Sets the container name to `nginx-container`.
+* `image` — Uses the `nginx:latest` container image.
 
 ---
 
-## Deploy the Pod
+## 🚀 Step 2: Create the Pod
+
+Apply the YAML manifest using:
 
 ```bash
 kubectl apply -f pod-nginx.yaml
-```
-
-Expected output:
-
-```text
-pod/pod-nginx created
+![alt text](image-1.png)
 ```
 
 ---
 
-## Verify the Deployment
+## 🔍 Step 3: Verify the Pod
 
-List the Pods and display their labels:
+Check the Pod status:
 
 ```bash
-kubectl get pods --show-labels
+kubectl get pod pod-nginx --show-lebals
+![alt text](image-2.png) 
 ```
 
-Example output:
+---
+
+## ✅ Final Configuration
+
+The resulting Pod should have:
 
 ```text
-NAME        READY   STATUS    RESTARTS   AGE   LABELS
-pod-nginx   1/1     Running   0          10s   app=nginx_app
+Pod:        pod-nginx
+Container:  nginx-container
+Image:      nginx:latest
+Label:      app=nginx_app
 ```
 
-View detailed information about the Pod:
-
-```bash
-kubectl describe pod pod-nginx
-```
+This completes the Kubernetes Pod creation lab using a YAML manifest.
