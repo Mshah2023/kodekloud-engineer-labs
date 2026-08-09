@@ -18,8 +18,8 @@ Create a Kubernetes Pod named `pod-nginx` using a YAML manifest with the followi
 Create a file named `pod-nginx.yaml`:
 
 ```bash
-![alt text](img/image.png)
 ```
+![alt text](img/image.png)
 
 ### Manifest Explanation
 
