@@ -17,6 +17,7 @@ Create a Kubernetes Deployment named `nginx` to deploy the Nginx application usi
 ## 📝 Step 1: Create the YAML Manifest
 
 Create a file named `nginx-deployment.yaml`:
+
 ![alt text](img/image-3.png) 
 
 ### Manifest Explanation
