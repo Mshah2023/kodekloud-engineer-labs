@@ -20,18 +20,21 @@ Create a custom Apache user for enhanced application security.
 ```bash
 ssh steve@172.16.238.11
 ```
+![alt text](img/image.png)
 
 ### 2. Become root
 
 ```bash
 sudo -i
 ```
+![alt text](img/image-1.png)
 
 ### 3. Create the user
 
 ```bash
 useradd -u 1106 -d /var/www/anita -m anita
 ```
+![alt text](img/image-2.png)
 
 ### 4. Verify the user
 
@@ -39,23 +42,14 @@ useradd -u 1106 -d /var/www/anita -m anita
 id anita
 ```
 
-Expected output:
-
-```text
-uid=1106(anita) gid=1106(anita) groups=1106(anita)
-```
+![alt text](image-3.png)
 
 ### 5. Verify the home directory
 
 ```bash
 ls -ld /var/www/anita
 ```
-
-Expected output:
-
-```text
-drwx------. 2 anita anita ...
-```
+![alt text](image.png)
 
 ---
 
