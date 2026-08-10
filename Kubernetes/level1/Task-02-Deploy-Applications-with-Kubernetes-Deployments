@@ -1,0 +1,279 @@
+# Kubernetes Task 2 - Create a Deployment Using a YAML Manifest
+
+## Objective
+
+Create a Kubernetes Deployment with the following requirements:
+
+* **Deployment Name:** `nginx`
+* **Image:** `nginx:latest`
+
+---
+
+## Step 1: Create the YAML Manifest
+
+Create a file named `nginx-deployment.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+```
+
+---
+
+## Step 2: Apply the Manifest
+
+Run the following command to create the Deployment:
+
+```bash
+kubectl apply -f nginx-deployment.yaml
+```
+
+Expected output:
+
+```text
+deployment.apps/nginx created
+```
+
+---
+
+## Step 3: Verify the Deployment
+
+Check that the Deployment was created:
+
+```bash
+kubectl get deployments
+```
+
+Example output:
+
+```text
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           10s
+```
+
+Check the Pod created by the Deployment:
+
+```bash
+kubectl get pods
+```
+
+Example output:
+
+```text
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-7f8c6d8f9b-abcde   1/1     Running   0          10s
+```
+
+View detailed information about the Deployment:
+
+```bash
+kubectl describe deployment nginx
+```
+
+---
+
+# Understanding the YAML
+
+## `apiVersion`
+
+```yaml
+apiVersion: apps/v1
+```
+
+Specifies the Kubernetes API version for Deployments.
+
+---
+
+## `kind`
+
+```yaml
+kind: Deployment
+```
+
+Defines the Kubernetes object type as a **Deployment**.
+
+---
+
+## `metadata`
+
+```yaml
+metadata:
+  name: nginx
+```
+
+Contains information about the Deployment.
+
+* `name` → The name of the Deployment.
+
+---
+
+## `spec`
+
+```yaml
+spec:
+```
+
+Defines how the Deployment should behave.
+
+---
+
+## `replicas`
+
+```yaml
+replicas: 1
+```
+
+Specifies the number of Pod replicas to maintain.
+
+* `1` means Kubernetes keeps **one Pod** running.
+
+---
+
+## `selector`
+
+```yaml
+selector:
+  matchLabels:
+    app: nginx
+```
+
+Tells the Deployment which Pods it should manage.
+
+The label here **must match** the label in the Pod template.
+
+---
+
+## `template`
+
+```yaml
+template:
+```
+
+Acts as a blueprint for the Pods that the Deployment creates.
+
+---
+
+## `template.metadata.labels`
+
+```yaml
+metadata:
+  labels:
+    app: nginx
+```
+
+Applies the label `app=nginx` to every Pod created by the Deployment.
+
+---
+
+## `containers`
+
+```yaml
+containers:
+```
+
+Lists the container(s) that will run inside each Pod.
+
+---
+
+## `name`
+
+```yaml
+- name: nginx
+```
+
+Sets the name of the container.
+
+---
+
+## `image`
+
+```yaml
+image: nginx:latest
+```
+
+Specifies the container image and tag to use.
+
+---
+
+# YAML Structure
+
+Every basic Deployment manifest follows this structure:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <deployment-name>
+
+spec:
+  replicas: <number>
+
+  selector:
+    matchLabels:
+      app: <label>
+
+  template:
+    metadata:
+      labels:
+        app: <same-label>
+
+    spec:
+      containers:
+      - name: <container-name>
+        image: <image:tag>
+```
+
+**Note:** The value under `selector.matchLabels` **must be the same** as the value under `template.metadata.labels`. This allows the Deployment to identify and manage the Pods it creates.
+
+---
+
+# Why Use a Deployment?
+
+A **Pod** runs your application, but a **Deployment** manages Pods.
+
+Benefits of using a Deployment:
+
+* Automatically recreates Pods if they fail.
+* Makes it easy to scale applications by changing the number of replicas.
+* Supports rolling updates with little or no downtime.
+* Allows you to roll back to a previous version if needed.
+
+---
+
+# Final Configuration
+
+The resulting Pod should have:
+
+```text
+Deployment Name: nginx 
+Image            nginx:latest
+Replicas         1  
+Container Name   nginx 
+Label            app=nginx
+```
+
+
+
+
+ Deployment Name:  nginx        |
+ Image            nginx:latest |
+ Replicas         1            |
+ Container Name   nginx       |
+ Label            app=nginx    |
+
+This completes the task of creating a Kubernetes Deployment using a YAML manifest.
