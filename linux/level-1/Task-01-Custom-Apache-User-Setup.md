@@ -78,3 +78,7 @@ A custom Apache user named **anita** is created with:
 - UID: **1106**
 - Home Directory: **/var/www/anita**
 - Home directory created automatically using the `-m` option.
+
+## Key Takeaway
+
+Creating a dedicated Apache user with a fixed UID and custom home directory improves application security, keeps ownership consistent, and isolates Apache-related files from other system users.
