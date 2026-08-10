@@ -1,4 +1,3 @@
-````markdown
 # Create a User with a Non-Interactive Shell
 
 > **KodeKloud Engineer Task**  
@@ -121,4 +120,4 @@ The task is successfully completed with the following configuration:
 ## Key Takeaway
 
 Assigning a non-interactive shell to service accounts prevents direct logins while still allowing the account to own files or run specific services. This is a common security practice that reduces the attack surface by ensuring system or application users cannot be used for interactive sessions.
-````
+
