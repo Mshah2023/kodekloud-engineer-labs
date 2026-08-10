@@ -42,14 +42,14 @@ useradd -u 1106 -d /var/www/anita -m anita
 id anita
 ```
 
-![alt text](image-3.png)
+![alt text](img/image-3.png)
 
 ### 5. Verify the home directory
 
 ```bash
 ls -ld /var/www/anita
 ```
-![alt text](image.png)
+![alt text](img/image-4.png)
 
 ---
 
