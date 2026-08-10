@@ -51,14 +51,14 @@ Check the Deployment status:
 ```bash
 kubectl get deployment nginx
 ```
-![alt text](image-5.png)
+![alt text](img/image-5.png)
 
 To verify the Pods created by the Deployment:
 
 ```bash
 kubectl get pods 
 ```
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 You can also inspect the Deployment in more detail:
 
 ---
