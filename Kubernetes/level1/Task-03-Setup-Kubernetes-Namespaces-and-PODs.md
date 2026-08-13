@@ -1,5 +1,3 @@
-Yes — for this task, the README should use **YAML manifests** rather than `kubectl run`. Following the same structure as your previous examples:
-
 # Create a Namespace and Nginx Pod Using YAML
 
 > **KodeKloud Engineer Task**
