@@ -14,6 +14,27 @@ Create a Kubernetes Deployment named `nginx` to deploy the Nginx application usi
 
 ---
 
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+```
+
 ## 📝 Step 1: Create the YAML Manifest
 
 Create a file named `nginx-deployment.yaml`:
@@ -71,4 +92,6 @@ Label:       app=nginx
 ```
 
 This completes the Kubernetes Deployment creation lab using an Nginx container image.
+
+
 
