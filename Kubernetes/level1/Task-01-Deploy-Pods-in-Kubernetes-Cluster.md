@@ -50,7 +50,7 @@ Apply the YAML manifest using:
 kubectl apply -f pod-nginx.yaml
 ```
 
-### Command Output
+### Expected output:
 
 ```text
 pod/pod-nginx created
@@ -68,7 +68,7 @@ Check the Pod status and labels:
 kubectl get pod pod-nginx --show-labels
 ```
 
-### Command Output
+### Expected output:
 
 ```text
 NAME        READY   STATUS    RESTARTS   AGE   LABELS
@@ -92,7 +92,7 @@ To verify the container name and image, run:
 kubectl describe pod pod-nginx
 ```
 
-### Relevant Command Output
+### Relevant Expected output:
 
 ```text
 Name:             pod-nginx
@@ -108,9 +108,9 @@ Containers:
 
 ---
 
-## ✅ Final Configuration
+## Result
 
-The resulting Pod has the following configuration:
+A Pod named pod-nginx is created with:
 
 ```text
 Pod:        pod-nginx
@@ -120,4 +120,6 @@ Label:      app=nginx_app
 Status:     Running
 ```
 
-This completes the Kubernetes Pod creation lab using a YAML manifest.
+## Key Takeaway
+
+A Kubernetes Pod manifest provides a declarative way to define the Pod, its labels, and the container it runs. Explicitly specifying nginx:latest ensures the required image tag is used.
