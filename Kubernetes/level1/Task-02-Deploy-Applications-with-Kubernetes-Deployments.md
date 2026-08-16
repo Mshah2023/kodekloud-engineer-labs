@@ -18,8 +18,6 @@ Create a Kubernetes Deployment named `nginx` to deploy the Nginx application usi
 
 Create a file named `nginx-deployment.yaml`:
 
-![alt text](img/image-3.png) 
-
 ### Manifest Explanation
 
 * `apiVersion: apps/v1` — Uses the Kubernetes Apps API for Deployments.
@@ -41,7 +39,6 @@ Apply the YAML manifest using:
 ```bash
 kubectl apply -f nginx-deployment.yaml
 ```
-![alt text](img/image-4.png) 
 
 ---
 
@@ -52,14 +49,12 @@ Check the Deployment status:
 ```bash
 kubectl get deployment nginx
 ```
-![alt text](img/image-5.png)
 
 To verify the Pods created by the Deployment:
 
 ```bash
 kubectl get pods 
 ```
-![alt text](img/image-6.png)
 
 ---
 
